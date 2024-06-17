@@ -7,6 +7,7 @@ import ImageGallery from "@/components/ImageGallery";
 import { getGroqCompletion } from "@/ai/groq";
 import { generateImageFal, generateVoice } from "@/ai/fal";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Movie = {
   name: string;
@@ -98,7 +99,12 @@ export default function MovieEnthusiastPage() {
                   autoPlay
                 />
               )}
-              <img src={selectedMovie.imageUrl} />
+              <Image
+                src={selectedMovie.imageUrl}
+                alt={selectedMovie.description}
+                width={800}
+                height={450}
+              />
               <button
                 className="p-4 mt-4 self-end bg-white text-black rounded-lg hover:shadow"
                 onClick={handleNext}

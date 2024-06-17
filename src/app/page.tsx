@@ -31,7 +31,7 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full items-center justify-center font-mono text-sm lg:flex flex-col">
         <h1 className="text-4xl font-bold mb-8 text-white">Starflix</h1>
         <div className="flex items-center mb-8">
-          <span className="mr-4 text-white">G'day</span>
+          <span className="mr-4 text-white">G&apos;day</span>
           <input
             type="text"
             value={playerName}

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 //Gallery of images with a callback function for when the user clicks an image
 export default function ImageGallery({
   images,
@@ -14,7 +16,12 @@ export default function ImageGallery({
           className="rounded-lg overflow-hidden"
           onClick={() => handleClickImage && handleClickImage(i)}
         >
-          <img src={url} />
+          <Image
+            src={url}
+            alt={`Image ${i + 1}`}
+            width={200}
+            height={200}
+          />
         </button>
       ))}
     </div>
