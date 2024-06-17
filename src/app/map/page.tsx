@@ -1,19 +1,25 @@
 "use client";
 
-import Chart, { Location } from "@/components/Chart";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Chart, { Location } from "@/components/Chart";
 
 //Demo of generating a map of coordinates that can be selected
 export default function MapPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MapContent />
+    </Suspense>
+  );
+}
+
+function MapContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const movieName = searchParams.get("movie");
   const [mapDescription, setMapDescription] = useState<string>(movieName || "");
   const [mapPrompt, setMapPrompt] = useState<string>("");
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
-    null
-  );
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
 
   useEffect(() => {
     if (movieName) {
