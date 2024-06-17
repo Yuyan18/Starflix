@@ -1,14 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { describeImagePrompt, describePlanetPrompt } from "@/ai/prompts";
 import Animation from "@/components/Animation";
-import { useSearchParams, useRouter } from "next/navigation";
 import { getGroqCompletion } from "@/ai/groq";
 import { updateLeaderboard } from "@/utils/leaderboard";
 
-//An example of using the tag cloud and fast image component to generate a timelapse of images
 export default function TimelapsePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TimelapseContent />
+    </Suspense>
+  );
+}
+
+function TimelapseContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const locationName = searchParams.get("location") || "";
